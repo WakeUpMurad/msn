@@ -1,0 +1,27 @@
+.header {
+    grid-area: header;
+    background-color: #1995AD;
+    display: flex;
+    align-items: center;
+}
+
+.headerLogo {
+    width: 50px;
+    margin: 0 auto  ;
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .headerLogo {
+        animation: Header-logo-spin infinite 20s linear;
+    }
+}
+
+@keyframes Header-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

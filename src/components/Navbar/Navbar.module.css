@@ -1,0 +1,12 @@
+.navbar {
+    grid-area: nav;
+    background-color: #A1D6E2;
+    padding: 20px;
+}
+
+.link {
+    color: white;
+}
+.active {
+    color: gold;
+}
