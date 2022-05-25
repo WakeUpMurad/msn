@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script async src="script.js"></script>
+    <script>
+        const showAllMethodsOfDocument = () => {
+            const createList = (content) => `<ul>${content}</ul>`;
+
+            const createItem = (key, value) => `<li>${key}% ${value}</li>`;
+
+            const itemArray = [];
+
+            for (let key in document) {
+                itemArray.push(createItem(key, document[key]))
+            }
+            const list = itemArray.join ('');
+            const body = document.querySelector('body');
+            body.innerHTML = list;
+
+        }
+
+        addEventListener('DOMContentLoaded', showAllMethodsOfDocument)
+    </script>
+</head>
+<body>
+<!--<select id="choice" onchange="func()">
+    <option value="" selected>Выберите валюту</option>
+    <option value="EUR">EUR</option>
+    <option value="UAN">UAN</option>
+    <option value="AZN">AZN</option>
+</select>-->
+</body>
+
+</html>

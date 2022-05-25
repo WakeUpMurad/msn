@@ -1,0 +1,29 @@
+@import "normalize.css";
+@import "base.css";
+@import "container.css";
+@import "header.css";
+@import "content.css";
+@import "footer.css";
+
+.landing-page {
+
+}
+@media (max-width: 1590px) {
+    .landing-page {
+
+    }
+}
+@media (max-width: 1200px) {
+    .landing-page {
+
+    }
+}
+@media (max-width: 992px) {
+    .landing-page {
+
+    }
+}
+@media (max-width: 768px) {
+    .landing-page {
+    }
+}

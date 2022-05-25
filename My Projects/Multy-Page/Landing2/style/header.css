@@ -1,0 +1,155 @@
+.header {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	font-family: 'Jost', sans-serif;
+	position: absolute;
+}
+.header:before 	{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+.header__body{
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	margin: 40px 0;
+}
+.header__logo {
+	position: relative;
+	z-index: 3;
+	font-size: 36px;
+	line-height: 22px;
+	color: #fff;
+	font-style: normal;
+	font-weight: 500;
+
+}
+/*	flex: 0 0 60px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.header__logo img {
+	max-width: 100%;
+	display: block;
+} !Если есть логотип в виде картинки!*/
+
+.header__burger {
+	display: none;
+}
+.header__menu {
+
+}
+.header__list {
+	display: flex;
+	position: relative;
+	z-index: 2;
+}
+.header__list li {
+	list-style: none;
+	margin:0 0 0 24px;
+}
+.header__link {
+	color: #fff;
+	font-size: 20px;
+	margin: 0 24px 0 0;
+	text-decoration: none;
+}
+.header__link:hover {
+	color: #D6CEE1;
+}
+
+.social_link img{
+	max-width: 25px;
+	max-height: 25px;
+
+}
+.social_link a :hover {
+	color: #fff;
+	background-color: #8754D9;
+}
+@media (max-width: 992px) {
+	body.lock {
+		overflow: hidden;
+	}
+	.header__body {
+		height: 50px;
+	}
+	/*.header__logo {
+		flex: 0 0 40px;
+	}*/
+	.header__burger {
+		position: relative;
+		z-index: 3;
+		display: block;
+		width: 50px;
+		height: 20px;
+	}
+	.header__burger span {
+		position: absolute;
+		background-color: #fff;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		top: 9px;
+		transition: all 0.3s ease 0s;
+	}
+	.header__burger:before,
+	.header__burger:after {
+		content: '';
+		background-color: #fff;
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		left: 0;
+		transition: all 0.3s ease 0s;
+	}
+	.header__burger:before {
+		top: 0;
+	}
+	.header__burger:after {
+		bottom: 0;
+	}
+	.header__burger.active span {
+		transform:scale(0) ;
+	}
+	.header__burger.active:before{
+		transform: rotate(45deg);
+		top: 9px;
+
+	}
+	.header__burger.active:after{
+		transform: rotate(-45deg);
+		bottom: 9px;
+		z-index: 51;
+	}
+	.header__menu {
+		position: fixed;
+		top: -100%;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		transition: all 0.3s ease 0s;
+		background: url(../img/headerBG.jpg) 0 0/100% 100% no-repeat;
+		padding: 70px 10px 20px 0;
+
+	}
+	.header__menu.active {
+		top: 0;
+	}
+	.header__list {
+		display: block;
+	}
+	.header__list li {
+		list-style: none;
+		margin:0 0 10px 0;
+	}
+	.header__link {
+		font-size: 24px;
+	}
+}
+

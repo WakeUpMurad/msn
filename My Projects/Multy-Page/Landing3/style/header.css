@@ -1,0 +1,55 @@
+.header { grid-area: header;
+	width: 100%;
+	min-height: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Jost', sans-serif;
+}
+.header__body {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 30px;
+}
+.logo {
+	display: flex;
+	flex-direction: row;
+}
+.logo_image{
+	width: 48px;
+	height: 48px;
+}
+
+.logo_text {
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+
+
+}
+.logo_text  span {
+	margin-left: 8px;
+	color: #1939DE;
+}
+
+.burger {
+	display: flex;
+	justify-content: space-between;
+	max-width: 870px;
+	width: 100%;
+
+}
+.list_link {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 600px;
+	color: #3D4B66;
+}
+.link a  {
+	color: #3D4B66;
+}
+.call-number {
+	color: #3D4B66;
+}
