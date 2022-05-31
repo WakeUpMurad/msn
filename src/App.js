@@ -10,6 +10,7 @@ import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
 import Error from "./components/Error";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 const App = (props) => {
   return (
@@ -20,10 +21,13 @@ const App = (props) => {
             <Routes>
                 <Route path='/'>
                     <Route path='profile'
-                           element={<Profile store={props.store}/>}
+                           element={<Profile/>}
                     />
                     <Route path='dialogs/*'
-                           element={<DialogsContainer store={props.store}/>}
+                           element={<DialogsContainer/>}
+                    />
+                    <Route path='users/*'
+                           element={<UsersContainer/>}
                     />
                     <Route path='news' element={<News/>} />
                     <Route path='music' element={<Music/>} />

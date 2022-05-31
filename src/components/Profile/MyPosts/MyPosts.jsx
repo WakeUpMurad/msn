@@ -20,7 +20,7 @@ const MyPosts = (props) => {
                 <button onClick={ onAddPost }>Add new post</button>
             </div>
             {
-                props.posts.map(post => <Post message={post.message} likesCount={post.likesCount}/>)
+                props.posts.map(post => <Post message={post.message} likesCount={post.likesCount} key={post.id}/>)
             }
         </div>
     );

@@ -17,11 +17,11 @@ const Dialogs = (props) => {
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItem}>
-                {props.state.dialogs.map(user => <DialogItem id={user.id} name={user.name} />)}
+                {props.dialogsPage.dialogs.map(user => <DialogItem id={user.id} name={user.name} key={user.id}/>)}
             </div>
             <div className={classes.messages}>
-                {props.state.messages.map(message => <Message message={message.message} />)}
-                <textarea onChange={ onMessageChange } value={props.state.newMessageText} placeholder='Enter your message'/>
+                {props.dialogsPage.messages.map(message => <Message message={message.message} key={message.id}/>)}
+                <textarea onChange={ onMessageChange } value={props.dialogsPage.newMessageText} placeholder='Enter your message'/>
                 <button onClick={ onSendMessage }>Send new message</button>
             </div>
         </div>
