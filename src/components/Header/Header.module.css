@@ -2,13 +2,19 @@
     grid-area: header;
     background-color: #1995AD;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
 .headerLogo {
     width: 50px;
-    margin: 0 auto  ;
+    margin: auto 0 ;
+    padding: 5px;
 
+}
+.loginBlock {
+    margin: auto 0 ;
+    padding: 5px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

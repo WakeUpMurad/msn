@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import { useNavigate } from "react-router-dom";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 const Dialogs = (props) => {
+    withAuthRedirect(props);
 
     let onSendMessage = () => {
         props.sendMessage();

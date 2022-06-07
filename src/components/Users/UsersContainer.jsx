@@ -1,27 +1,38 @@
 import React from 'react';
-import {connect} from "react-redux";
-import Users from "./Users";
-import {setUsersAC, followAC, unfollowAC} from "../../redux/users-reducer";
+import {connect} from 'react-redux';
+import {follow, unfollow, toggleFollowingProgress, getUsers} from '../../redux/users-reducer';
+import Users from './Users';
+import Loader from '../UI/Loader/Loader';
+
+class UsersContainer extends React.Component {
+
+    componentDidMount() {
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+    }
+
+    onPageChanged = (pageNum) => {
+        this.props.getUsers(pageNum, this.props.pageSize);
+    }
+
+    render() {
+        return <>
+                {this.props.isFetching ? <Loader/> : null }
+                <Users {...this.props} onPageChanged={this.onPageChanged}/>
+            </>
+    }
+}
 
 const mapStateToProps = (state) => {
     return {
+        isAuth: state.auth.isAuth,
         users: state.usersPage.users,
-    }
-}
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setUsers: (users) => {
-            dispatch(setUsersAC(users));
-        },
-        follow: (userId) => {
-            dispatch(followAC(userId));
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId));
-        },
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress,
     }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
-
-export default UsersContainer;
+export default UsersContainer = connect(mapStateToProps, {follow, unfollow, toggleFollowingProgress, getUsers}
+)(UsersContainer);

@@ -1,4 +1,13 @@
 .userPhoto {
-   width: 100px;
+   width: 130px;
    height: 100px;
+}
+
+.selectedPage {
+   font-weight: bold;
+   color: coral;
+}
+
+.pagination {
+
 }

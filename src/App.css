@@ -2,6 +2,7 @@
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
+  color: #fff;
 }
 
 .app-wrapper {
@@ -19,23 +20,10 @@
   min-height: 100vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-.app-wrapper-сontent {
+.app-wrapper-content {
   grid-area: content;
-  background: url("img/background.png") 50%/cover no-repeat;
+  background-color: #61dafb;
+  max-width: 1000px;
 }
+
 
