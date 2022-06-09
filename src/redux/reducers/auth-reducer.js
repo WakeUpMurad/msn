@@ -1,5 +1,5 @@
-import {authAPI} from "../api/api";
-
+import {authAPI} from "../../api/api";
+import {AuthContext} from "../../context";
 const SET_USER_DATA = 'SET_USER_DATA';
 
 let initialState = {

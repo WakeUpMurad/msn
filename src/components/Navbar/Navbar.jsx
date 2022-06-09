@@ -1,43 +1,28 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import classes from "./Navbar.module.css";
 import {NavLink} from "react-router-dom";
+import MyButton from "../UI/MyButton/MyButton";
+import {AuthContext} from "../../context";
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const {isAuth, setIsAuth} = useContext(AuthContext)
+    const logout = () => {
+        setIsAuth(false);
+        localStorage.removeItem('auth')
+    }
     return (
         <nav className={classes.navbar} >
-            <ul>
-                <li>
-                    <NavLink to="/profile" className={({ isActive }) =>
-                    isActive ? classes.active : classes.link}>
-                        Profile
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/dialogs" className={({ isActive }) => isActive ? classes.active : classes.link}>
-                        Massages
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/users" className={({ isActive }) => isActive ? classes.active : classes.link}>
-                        Users
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/news" className={({ isActive }) => isActive ? classes.active : classes.link}>
-                        News
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/music" className={({ isActive }) => isActive ? classes.active : classes.link}>
-                        Music
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/settings" className={({ isActive }) => isActive ? classes.active : classes.link}>
-                        Settings
-                    </NavLink>
-                </li>
-            </ul>
+            <div className={classes.navbar__links}>
+                <NavLink to="/profile" className={({ isActive }) => isActive ? classes.link__active : classes.navbar__link}>Profile</NavLink>
+                <NavLink to="/dialogs" className={({ isActive }) => isActive ? classes.link__active : classes.navbar__link}>Massages</NavLink>
+                <NavLink to="/users" className={({ isActive }) => isActive ? classes.link__active : classes.navbar__link}>Users</NavLink>
+                <NavLink to="/news" className={({ isActive }) => isActive ? classes.link__active : classes.navbar__link}>News</NavLink>
+                <NavLink to="/music" className={({ isActive }) => isActive ? classes.link__active : classes.navbar__link}>Music</NavLink>
+                <NavLink to="/settings" className={({ isActive }) => isActive ? classes.link__active : classes.navbar__link}>Settings</NavLink>
+            </div>
+            <MyButton onClick={logout}>
+                Выйти
+            </MyButton>
         </nav>
     );
 };

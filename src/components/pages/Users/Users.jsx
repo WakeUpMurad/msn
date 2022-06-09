@@ -1,11 +1,9 @@
 import React from 'react';
 import classes from './Users.module.css';
-import userPhoto from "../../assets/img/user.png"
+import userPhoto from "../../../assets/img/user.png"
 import {NavLink} from "react-router-dom";
-import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 const Users  = (props) => {
-    withAuthRedirect(props);
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 

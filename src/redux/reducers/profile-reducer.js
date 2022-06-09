@@ -1,13 +1,15 @@
-import {profileAPI} from "../api/api";
+import {profileAPI} from "../../api/api";
 import {setCurrentPage, setUsers, setUsersCount} from "./users-reducer";
 
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
     profile: null,
+    status: '',
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: 10},
         {id: 2, message: 'It\'s my first post', likesCount: 10},
@@ -24,6 +26,9 @@ const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_PROFILE:
             return {...state, profile: action.profile}
+
+        case SET_STATUS:
+            return {...state, status: action.status}
 
         case ADD_POST:
             let newPost = {
@@ -45,6 +50,7 @@ const profileReducer = (state = initialState, action) => {
 }
 
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
+export const setStatus = (status) => ({ type: SET_STATUS, status })
 export const addPost = () => ({type: ADD_POST})
 export const updateNewPostText = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
@@ -61,5 +67,22 @@ export const getUserProfile = (userId) => {
         }).catch(err => console.log(err));
     }
 }
+export const getUserStatus = (userId) => {
+    return (dispatch) => {
+        profileAPI.getUserStatus(userId).then(data => {
+            dispatch(setStatus(data));
+        }).catch(err => console.log(err));
+    }
+}
+export const updateStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.updateStatus(status).then(data => {
+            if(data.resultCode === 0) {
+                dispatch(setStatus(status));
+            }
+        }).catch(err => console.log(err));
+    }
+}
+
 
 export default profileReducer;

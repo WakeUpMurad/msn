@@ -1,39 +1,36 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import './App.css';
+import {AuthContext} from "./context";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import { Routes, Route } from "react-router-dom";
-import Music from "./components/Music/Music";
-import Settings from "./components/Settings/Settings";
-import News from "./components/News/News";
-import Error from "./components/Error";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import Login from "./components/Login/Login";
+import AppRouter from "./components/AppRouter";
+import {BrowserRouter} from "react-router-dom";
 
 const App = (props) => {
-  return (
-    <div className="app-wrapper">
-        <HeaderContainer />
-        <Navbar />
-        <div className="app-wrapper-content">
-            <Routes>
-                <Route path='/'>
-                    <Route path='profile/*' element={<ProfileContainer />}/>
-                    <Route path='dialogs/*' element={<DialogsContainer/>}/>
-                    <Route path='users/*' element={<UsersContainer/>}/>
-                    <Route path='login' element={<Login />}/>
-                    <Route path='news' element={<News/>} />
-                    <Route path='music' element={<Music/>} />
-                    <Route path='settings' element={<Settings/>} />
-                    <Route path='*' element={<Error/>} />
-                </Route>
-            </Routes>
-        </div>
-        <Footer />
-    </div>
+    const [isAuth, setIsAuth] = useState(false)
+    const [isLoading, setLoading] = useState(true)
+    useEffect(() => {
+        if (localStorage.getItem('auth')) {
+            setIsAuth(true)
+        }
+        setLoading(false);
+    }, [])
+
+    return (
+        <AuthContext.Provider value={{isAuth, setIsAuth, isLoading}}>
+                <BrowserRouter>
+                    <div className="app-wrapper">
+                        <HeaderContainer />
+                        <Navbar />
+                        <div className="app-wrapper-content">
+                            <AppRouter />
+                        </div>
+                        <Footer />
+                    </div>
+                </BrowserRouter>
+        </AuthContext.Provider>
+
   );
 }
 

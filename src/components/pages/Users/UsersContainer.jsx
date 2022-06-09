@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {follow, unfollow, toggleFollowingProgress, getUsers} from '../../redux/users-reducer';
+import {follow, unfollow, toggleFollowingProgress, getUsers} from '../../../redux/reducers/users-reducer';
 import Users from './Users';
-import Loader from '../UI/Loader/Loader';
+import Loader from '../../UI/Loader/Loader';
 
 class UsersContainer extends React.Component {
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import classes from "./ProfileInfo.module.css";
-import Loader from "../../UI/Loader/Loader";
-import userPhoto from "../../../assets/img/user.png"
+import Loader from "../../../UI/Loader/Loader";
+import userPhoto from "../../../../assets/img/user.png"
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
     if(!props.profile) {
@@ -12,7 +13,7 @@ const ProfileInfo = (props) => {
             Page body
             <div className={classes.profile}>
                 <img className={classes.profilePhoto} src={props.profile.photos.large || userPhoto} alt='img'/>
-                ava + description
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus} setStatus={props.setStatus}/>
             </div>
             <div className="profileFullName">
                 {props.profile.fullName}
