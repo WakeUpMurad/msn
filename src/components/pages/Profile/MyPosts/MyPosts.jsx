@@ -1,24 +1,20 @@
 import React from 'react';
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
+import AddPostForm from "./AddPostForm";
+import {connect} from "react-redux";
+import {addPost} from "../../../../redux/reducers/profile-reducer";
 
 const MyPosts = (props) => {
 
-    let onAddPost = () => {
-        props.addPost();
-    }
-    let onPostChange = (e) => {
-        let text = e.target.value;
-        props.updateNewPostText(text);
+    const addPost = (values) => {
+        props.addPost(values.newPostText);
     }
 
     return (
         <div className='myPosts'>
             My Posts
-            <div className="newPost">
-                <textarea onChange={ onPostChange } value={props.newPostText}/>
-                <button onClick={ onAddPost }>Add new post</button>
-            </div>
+            <AddPostForm onSubmit={addPost} />
             {
                 props.posts.map(post => <Post message={post.message} likesCount={post.likesCount} key={post.id}/>)
             }
@@ -26,4 +22,10 @@ const MyPosts = (props) => {
     );
 };
 
-export default MyPosts;
+const mapStateToProps = (state) => {
+    return {
+        posts: state.profilePage.posts,
+    }
+}
+
+export default connect(mapStateToProps, {addPost})(MyPosts);

@@ -24,6 +24,8 @@
   grid-area: content;
   background-color: #61dafb;
   max-width: 1000px;
+  padding: 15px;
+  border-radius: 20px;
 }
 
 

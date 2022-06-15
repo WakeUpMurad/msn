@@ -2,17 +2,16 @@ import React from 'react';
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import AddMessageForm from "./AddMessageForm";
+import {connect} from "react-redux";
+import {sendMessage} from "../../../redux/reducers/dialogs-reducer";
 
 const Dialogs = (props) => {
 
-    let onSendMessage = () => {
-        props.sendMessage();
+    const addNewMessage = (values) => {
+        props.sendMessage(values.newMessageText)
     }
 
-    let onMessageChange = (e) => {
-        let text = e.target.value;
-        props.updateNewMessageText(text);
-    }
 
     return (
         <div className={classes.dialogs}>
@@ -21,11 +20,16 @@ const Dialogs = (props) => {
             </div>
             <div className={classes.messages}>
                 {props.dialogsPage.messages.map(message => <Message message={message.message} key={message.id}/>)}
-                <textarea onChange={ onMessageChange } value={props.dialogsPage.newMessageText} placeholder='Enter your message'/>
-                <button onClick={ onSendMessage }>Send new message</button>
+                <AddMessageForm onSubmit={addNewMessage}/>
             </div>
         </div>
     );
 };
 
-export default Dialogs;
+const mapStateToProps = (state) => {
+    return {
+        dialogsPage: state.dialogsPage,
+    }
+}
+
+export default connect(mapStateToProps, {sendMessage})(Dialogs);

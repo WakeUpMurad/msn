@@ -4,8 +4,12 @@ import dialogsReducer from "./reducers/dialogs-reducer";
 import profileReducer from "./reducers/profile-reducer";
 import UsersReducer from "./reducers/users-reducer";
 import authReducer from "./reducers/auth-reducer";
+import appReducer from "./reducers/app-reducer";
+import {reducer as formReducer} from 'redux-form';
 
 let reducers = combineReducers({
+    form: formReducer,
+    app: appReducer,
     auth: authReducer,
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,

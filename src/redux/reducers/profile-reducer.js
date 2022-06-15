@@ -1,10 +1,8 @@
 import {profileAPI} from "../../api/api";
-import {setCurrentPage, setUsers, setUsersCount} from "./users-reducer";
 
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
@@ -17,7 +15,6 @@ let initialState = {
         {id: 4, message: 'Firth post', likesCount: 10},
         {id: 5, message: 'Yo', likesCount: 10},
     ],
-    newPostText: 'DAO-IT.com',
     toggleIsFetching: true,
 };
 
@@ -33,13 +30,10 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST:
             let newPost = {
                 id: state.posts.length + 1,
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: 0,
             };
             return {...state, newPostText: '', posts: [...state.posts, newPost]};
-
-        case UPDATE_NEW_POST_TEXT:
-            return {...state, newPostText: action.newText};
 
         case TOGGLE_IS_FETCHING:
             return {...state, isFetching: action.isFetching}
@@ -51,8 +45,7 @@ const profileReducer = (state = initialState, action) => {
 
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 export const setStatus = (status) => ({ type: SET_STATUS, status })
-export const addPost = () => ({type: ADD_POST})
-export const updateNewPostText = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export const addPost = (newPostText) => ({type: ADD_POST, newPostText})
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 
 

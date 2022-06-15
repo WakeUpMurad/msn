@@ -1,27 +1,32 @@
 import React, {useContext} from 'react';
+import LoginReduxForm from "./LoginReduxForm";
+import {connect} from "react-redux";
+import {logIn} from "../../../redux/reducers/auth-reducer";
+import {Navigate} from "react-router-dom";
 import {AuthContext} from "../../../context";
-import MyInput from "../../UI/MyInput/MyInput";
-import MyButton from "../../UI/MyButton/MyButton";
 
 
-const Login = () => {
-    const {isAuth, setIsAuth} = useContext(AuthContext)
-    const login = event => {
-        event.preventDefault();
-        setIsAuth(true);
-        localStorage.setItem('auth', 'true')
+const Login = (props) => {
+    const {isAuth, setIsAuth} = useContext(AuthContext);
+    const onSubmit = (formData) => {
+        props.logIn(formData.email, formData.password, formData.rememberMe);
+        if (localStorage.getItem('auth')) {
+            setIsAuth(true)
+            return <Navigate to="/profile" replace />
+        }
+    }
+
+    if(isAuth) {
+        return <Navigate to="/profile" replace />
     }
 
     return (
         <div>
-            <h1>Страница для логина</h1>
-            <form onSubmit={login}>
-                <MyInput type="text" placeholder="Введите логин"/>
-                <MyInput type="password" placeholder="Введите пароль"/>
-                <MyButton>Войти</MyButton>
-            </form>
+            <h1>Login page</h1>
+            <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     );
 };
 
-export default Login;
+
+export default connect(null, {logIn})(Login);

@@ -1,52 +1,87 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import classes from './Users.module.css';
-import userPhoto from "../../../assets/img/user.png"
-import {NavLink} from "react-router-dom";
+import {connect} from "react-redux";
+import {follow, getUsers, toggleFollowingProgress, unfollow} from "../../../redux/reducers/users-reducer";
+import Pagination from "../../UI/Pagination/Pagination";
+import {getPageCount} from "../../../utils/page";
+import MySelect from "../../UI/MySelect/MySelect";
+import UsersList from "./UsersList";
+import {useFeatching} from "../../../hooks/useFeatching";
+import {usersAPI} from "../../../api/api";
+import {useObserver} from "../../../hooks/useObserver";
+import Loader from "../../UI/Loader/Loader";
 
 const Users  = (props) => {
+    const [totalPages, setTotalPages] = useState(0)
+    const [limit, setLimit] = useState(10)
+    const [page, setPage] = useState(1)
+    const lastElement = useRef()
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    const onPageChanged = (pageNum) => {
+        props.getUsers(pageNum, props.pageSize);
+        setPage(pageNum)
+    }
+
+    const [fetchUsers, isUsersLoading, userError] = useFeatching(async (page, limit) => {
+        const response = await usersAPI.getUsers(page, limit);
+        const totalCount = response.totalCount;
+        setTotalPages(getPageCount(totalCount, limit))
+    })
+
+    useObserver(lastElement, page < totalPages, isUsersLoading, () => {
+        setPage(page + 1)
+    })
+
+    useEffect(() => {
+        fetchUsers(page, limit)
+    }, [page, limit])
+
+
+
+    useEffect(() => {
+        props.getUsers(props.currentPage, props.pageSize);
+    }, [])
+
+    let pagesCount = getPageCount(props.totalUsersCount, props.pageSize)
 
     let pages = [];
-    for(let i = 1; i <=pagesCount; i++) {
+    for(let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
         return <div className='app-wrapper-content'>
-            <div>
-                {pages.map(p => {
-                    return <span key={p}
-                        className={props.currentPage === p ? classes.selectedPage : classes.pagination}
-                        onClick={(e) => { props.onPageChanged(p) }}
-                        >{p}</span>
-                })}
-            </div>
-            {
-                props.users.map(u => <div key={u.id}>
-                    <span>
-                            <NavLink to={'/profile/' + u.id}>
-                                <img src={u.photos.small != null ? u.photos.small: userPhoto} className={classes.userPhoto} alt=""/>
-                            </NavLink>
-                        <div>
-                            {u.followed
-                                ? <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {props.unfollow(u.id)}}>Unfollow</button>
-                                : <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {props.follow(u.id)}}>Follow</button>
-                            }
-                        </div>
-                    </span>
-                    <span>
-                        <span>
-                            <div>{u.name}</div>
-                            <div>{u.status}</div>
-                        </span>
-                        <span>
-                            <div>{"u.location.country"}</div>
-                            <div>{"u.location.city"}</div>
-                        </span>
-                    </span>
-                </div>)
+            <MySelect
+                value={limit}
+                onChange={value => setLimit(value)}
+                defaultValue='Количество элементов на странице'
+                options={[
+                    {value: 25, name: '25'},
+                    {value: 50, name: '50'},
+                    {value: 100, name: '100'},
+                    {value: -1, name: 'Показать все'},
+                ]}
+            />
+            <Pagination
+                page={page}
+                changePage={onPageChanged}
+                totalPages={totalPages}
+            />
+            <UsersList users={props.users} />
+            <div ref={lastElement} style={{height: 20, background: 'red'}}/>
+            {isUsersLoading &&
+                <div style={{display: 'flex', justifyContent: 'center', marginTop: 50}}><Loader/></div>
             }
-        </div>;
+        </div>
 }
-export default Users;
+const mapStateToProps = (state) => {
+    return {
+        isAuth: state.auth.isAuth,
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress,
+    }
+}
+
+export default connect(mapStateToProps, {follow, unfollow, toggleFollowingProgress, getUsers})(Users);

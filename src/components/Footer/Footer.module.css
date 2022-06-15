@@ -1,4 +1,6 @@
 .footer {
     grid-area: footer;
     background-color: #BCBABE;
+    border-radius: 20px;
+    padding: 15px;
 }

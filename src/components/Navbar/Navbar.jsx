@@ -20,9 +20,6 @@ const Navbar = (props) => {
                 <NavLink to="/music" className={({ isActive }) => isActive ? classes.link__active : classes.navbar__link}>Music</NavLink>
                 <NavLink to="/settings" className={({ isActive }) => isActive ? classes.link__active : classes.navbar__link}>Settings</NavLink>
             </div>
-            <MyButton onClick={logout}>
-                Выйти
-            </MyButton>
         </nav>
     );
 };
