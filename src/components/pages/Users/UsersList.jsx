@@ -7,7 +7,6 @@ import {connect} from "react-redux";
 import {follow, toggleFollowingProgress, unfollow} from "../../../redux/reducers/users-reducer";
 
 const UsersList  = (props) => {
-    console.log(props)
     if (!props.users.length) {
         return (
             <h1 style={{textAlign: 'center'}}>

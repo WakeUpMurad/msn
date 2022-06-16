@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import classes from './Users.module.css';
 import {connect} from "react-redux";
-import {follow, getUsers, toggleFollowingProgress, unfollow} from "../../../redux/reducers/users-reducer";
+import {follow, requestUsers, toggleFollowingProgress, unfollow} from "../../../redux/reducers/users-reducer";
 import Pagination from "../../UI/Pagination/Pagination";
 import {getPageCount} from "../../../utils/page";
 import MySelect from "../../UI/MySelect/MySelect";
@@ -10,6 +10,14 @@ import {useFeatching} from "../../../hooks/useFeatching";
 import {usersAPI} from "../../../api/api";
 import {useObserver} from "../../../hooks/useObserver";
 import Loader from "../../UI/Loader/Loader";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../../redux/selectors";
 
 const Users  = (props) => {
     const [totalPages, setTotalPages] = useState(0)
@@ -18,7 +26,7 @@ const Users  = (props) => {
     const lastElement = useRef()
 
     const onPageChanged = (pageNum) => {
-        props.getUsers(pageNum, props.pageSize);
+        props.requestUsers(pageNum, props.pageSize);
         setPage(pageNum)
     }
 
@@ -39,7 +47,7 @@ const Users  = (props) => {
 
 
     useEffect(() => {
-        props.getUsers(props.currentPage, props.pageSize);
+        props.requestUsers(props.currentPage, props.pageSize);
     }, [])
 
     let pagesCount = getPageCount(props.totalUsersCount, props.pageSize)
@@ -74,14 +82,13 @@ const Users  = (props) => {
 }
 const mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth,
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state),
     }
 }
 
-export default connect(mapStateToProps, {follow, unfollow, toggleFollowingProgress, getUsers})(Users);
+export default connect(mapStateToProps, {follow, unfollow, toggleFollowingProgress, requestUsers})(Users);
