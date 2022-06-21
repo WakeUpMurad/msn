@@ -6245,13 +6245,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"github@npm:^14.0.0":
-  version: 14.0.0
-  resolution: "github@npm:14.0.0"
-  checksum: 97aec69e9967b70c7a33d06b8745ddfc0f741a52c9d34bc9a52c10b71961618e657055232838910e99898fda6e12ab183e6e79ce04624a4dcc482c6cd2d17b87
-  languageName: node
-  linkType: hard
-
 "glob-parent@npm:^5.1.2, glob-parent@npm:~5.1.2":
   version: 5.1.2
   resolution: "glob-parent@npm:5.1.2"
@@ -7111,13 +7104,6 @@ __metadata:
   dependencies:
     is-docker: ^2.0.0
   checksum: 20849846ae414997d290b75e16868e5261e86ff5047f104027026fd61d8b5a9b0b3ade16239f35e1a067b3c7cc02f70183cb661010ed16f4b6c7c93dad1b19d8
-  languageName: node
-  linkType: hard
-
-"isarray@npm:0.0.1":
-  version: 0.0.1
-  resolution: "isarray@npm:0.0.1"
-  checksum: 49191f1425681df4a18c2f0f93db3adb85573bcdd6a4482539d98eac9e705d8961317b01175627e860516a2fc45f8f9302db26e5a380a97a520e272e2a40a8d4
   languageName: node
   linkType: hard
 
@@ -8932,15 +8918,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"page@npm:^1.11.6":
-  version: 1.11.6
-  resolution: "page@npm:1.11.6"
-  dependencies:
-    path-to-regexp: ~1.2.1
-  checksum: 9ea2391bccc7bad09c9948e34f9ef5e897c902ed8fb707186a9be43631370ce82d5dd432483c663ffd6e82c48ec6cf5057a9804ceb6c5b62b6d5582e3698900c
-  languageName: node
-  linkType: hard
-
 "param-case@npm:^3.0.4":
   version: 3.0.4
   resolution: "param-case@npm:3.0.4"
@@ -9035,15 +9012,6 @@ __metadata:
   version: 0.1.7
   resolution: "path-to-regexp@npm:0.1.7"
   checksum: 69a14ea24db543e8b0f4353305c5eac6907917031340e5a8b37df688e52accd09e3cebfe1660b70d76b6bd89152f52183f28c74813dbf454ba1a01c82a38abce
-  languageName: node
-  linkType: hard
-
-"path-to-regexp@npm:~1.2.1":
-  version: 1.2.1
-  resolution: "path-to-regexp@npm:1.2.1"
-  dependencies:
-    isarray: 0.0.1
-  checksum: 29f3904d31e40046d0535172b36003140fdb95cc87b158d5bec72334a9ff8eabd5fd378631cea939953fa978cda54f7b0565f831438661414aca1c5aa5c2e788
   languageName: node
   linkType: hard
 
@@ -11132,8 +11100,6 @@ __metadata:
   dependencies:
     axios: ^0.27.2
     gh-pages: ^4.0.0
-    github: ^14.0.0
-    page: ^1.11.6
     react: ^18.2.0
     react-dom: ^18.2.0
     react-redux: ^8.0.2

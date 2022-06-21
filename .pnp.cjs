@@ -35,8 +35,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["axios", "npm:0.27.2"],\
             ["gh-pages", "npm:4.0.0"],\
-            ["github", "npm:14.0.0"],\
-            ["page", "npm:1.11.6"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:9f9fc0a1b0f4af29dedad8563dfcdbcfa4494e426b785abd11697ec94db60feaa95e46552e7cee6d047c1d301b1a728c26fcf8bb443c802f3f4bffcfd9a76e25#npm:18.2.0"],\
             ["react-redux", "virtual:9f9fc0a1b0f4af29dedad8563dfcdbcfa4494e426b785abd11697ec94db60feaa95e46552e7cee6d047c1d301b1a728c26fcf8bb443c802f3f4bffcfd9a76e25#npm:8.0.2"],\
@@ -8897,15 +8895,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["github", [\
-        ["npm:14.0.0", {\
-          "packageLocation": "./.yarn/cache/github-npm-14.0.0-b4352ff613-97aec69e99.zip/node_modules/github/",\
-          "packageDependencies": [\
-            ["github", "npm:14.0.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["glob", [\
         ["npm:7.2.3", {\
           "packageLocation": "./.yarn/cache/glob-npm-7.2.3-2d866d17a5-29452e97b3.zip/node_modules/glob/",\
@@ -9916,13 +9905,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["isarray", [\
-        ["npm:0.0.1", {\
-          "packageLocation": "./.yarn/cache/isarray-npm-0.0.1-92e37e0a70-49191f1425.zip/node_modules/isarray/",\
-          "packageDependencies": [\
-            ["isarray", "npm:0.0.1"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:1.0.0", {\
           "packageLocation": "./.yarn/cache/isarray-npm-1.0.0-db4f547720-f032df8e02.zip/node_modules/isarray/",\
           "packageDependencies": [\
@@ -11927,16 +11909,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["page", [\
-        ["npm:1.11.6", {\
-          "packageLocation": "./.yarn/cache/page-npm-1.11.6-e16b2bf0f6-9ea2391bcc.zip/node_modules/page/",\
-          "packageDependencies": [\
-            ["page", "npm:1.11.6"],\
-            ["path-to-regexp", "npm:1.2.1"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["param-case", [\
         ["npm:3.0.4", {\
           "packageLocation": "./.yarn/cache/param-case-npm-3.0.4-cfb242ad97-b34227fd0f.zip/node_modules/param-case/",\
@@ -12048,14 +12020,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/path-to-regexp-npm-0.1.7-2605347373-69a14ea24d.zip/node_modules/path-to-regexp/",\
           "packageDependencies": [\
             ["path-to-regexp", "npm:0.1.7"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
-        ["npm:1.2.1", {\
-          "packageLocation": "./.yarn/cache/path-to-regexp-npm-1.2.1-3d52cc6451-29f3904d31.zip/node_modules/path-to-regexp/",\
-          "packageDependencies": [\
-            ["path-to-regexp", "npm:1.2.1"],\
-            ["isarray", "npm:0.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -15219,8 +15183,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["social_net", "workspace:."],\
             ["axios", "npm:0.27.2"],\
             ["gh-pages", "npm:4.0.0"],\
-            ["github", "npm:14.0.0"],\
-            ["page", "npm:1.11.6"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:9f9fc0a1b0f4af29dedad8563dfcdbcfa4494e426b785abd11697ec94db60feaa95e46552e7cee6d047c1d301b1a728c26fcf8bb443c802f3f4bffcfd9a76e25#npm:18.2.0"],\
             ["react-redux", "virtual:9f9fc0a1b0f4af29dedad8563dfcdbcfa4494e426b785abd11697ec94db60feaa95e46552e7cee6d047c1d301b1a728c26fcf8bb443c802f3f4bffcfd9a76e25#npm:8.0.2"],\
