@@ -1,6 +1,0 @@
-.idea
-.yarn
-node_modules
-.pnp.loader.mjs
-.pnp.cjs
-yarn.lock
