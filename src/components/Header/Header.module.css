@@ -1,16 +1,29 @@
 .header {
     grid-area: header;
-    background-color: #1995AD;
+    position: relative;
+    background: #444;
+    transition: 0.25s ease;
+}
+
+.headerBody {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1;
     border-radius: 20px;
+    background-color: #1995AD;
+    width: 100%;
 }
 
 .headerLogo {
-    width: 50px;
+    width: 4rem;
     margin: auto 0 ;
     padding: 5px;
+    border-radius: 50%;
 
 }
 .loginBlock {

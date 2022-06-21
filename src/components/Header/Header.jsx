@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import classes from "./Header.module.css";
-import logo from "../../assets/img/RYL_logo.png";
+import logo from "../../assets/img/logo_192x192.png";
 import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
 import {logOut} from "../../redux/reducers/auth-reducer";
@@ -15,12 +15,14 @@ const Header = (props) => {
 
     return (
         <header className={classes.header}>
-            <img className={classes.headerLogo} src={logo} alt='this is top image'/>
-            <div className={classes.loginBlock}>
-                { isAuth
-                    ? <div>{props.login} - <button onClick={logout}>Logout</button></div>
-                    : <NavLink to={'/login'}>Login</NavLink>
-                }
+            <div className={classes.headerBody}>
+                <img className={classes.headerLogo} src={logo} alt='this is top image'/>
+                <div className={classes.loginBlock}>
+                    { isAuth
+                        ? <div>{props.login} - <button onClick={logout}>Logout</button></div>
+                        : <NavLink to={'/login'}>Login</NavLink>
+                    }
+                </div>
             </div>
         </header>
     );

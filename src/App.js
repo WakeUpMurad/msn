@@ -22,7 +22,7 @@ const App = (props) => {
             setIsAuth(true)
         }
         setLoading(false);
-    }, [])
+    }, [isAuth])
 
     if(!props.initialized){
         return <Loader />

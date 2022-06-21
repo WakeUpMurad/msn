@@ -1,9 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./ProfileInfo.module.css";
 
 const ProfileStatus = (props) => {
     const [isEdit, setEditMode] = useState(false)
-    const [status, changeStatus] = useState(props.status)
+    const [status, setStatus] = useState(props.status)
+
+    useEffect(() => {
+        setStatus(props.status);
+
+    }, [props.status])
 
     const activateEditMode = () => {
         setEditMode(true)
@@ -14,7 +19,7 @@ const ProfileStatus = (props) => {
     }
 
     const onStatusChange = (e) => {
-        changeStatus(e.target.value)
+        setStatus(e.target.value)
     }
 
     return (

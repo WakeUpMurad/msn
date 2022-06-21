@@ -22,37 +22,33 @@ const authReducer = (state = initialState, action) => {
 }
 export const setAuthsUserData = (userId, login, email) => ({ type: SET_USER_DATA, payload: {userId, login, email} })
 
-export const getAuthUser = () => (dispatch) => {
-    return authAPI.getAuthUser()
-        .then(data => {
-            if(data.resultCode === 0) {
-                let { id, login, email } = data.data;
-                dispatch(setAuthsUserData(id, login, email));
-                localStorage.setItem('auth', 'true')
-            }
-        }).catch(err => console.log(err))
+export const getAuthUser = () => async (dispatch) => {
+  const data = await authAPI.getAuthUser();
+
+  if(data.resultCode === 0) {
+      let { id, login, email } = data.data;
+      dispatch(setAuthsUserData(id, login, email));
+      localStorage.setItem('auth', 'true')
+  }
 }
 
-export const logIn = (email, password, rememberMe) => (dispatch) => {
-    authAPI.login(email, password, rememberMe)
-        .then(data => {
-            if(data.resultCode === 0) {
-                return  dispatch(getAuthUser());
-            } else {
-                let message = data.messages.length > 0 ? data.messages[0] : 'Some error';
-                dispatch(stopSubmit('login', {_error: message}))
-            }
-        }).catch(err => console.log(err))
-}
+export const logIn = (email, password, rememberMe) => async (dispatch) => {
+  const responseData = await authAPI.login(email, password, rememberMe);
 
-export const logOut = () => (dispatch) => {
-    authAPI.logout()
-        .then(data => {
-            if(data.resultCode === 0) {
-                dispatch(setAuthsUserData(null, null, null));
-                localStorage.removeItem('auth')
-            }
-        }).catch(err => console.log(err))
+  if (responseData.resultCode === 0) {
+    return dispatch(getAuthUser());
+  } else {
+    let message = responseData.messages.length > 0 ? responseData.messages[0] : 'Some error';
+    dispatch(stopSubmit('login', {_error: message}))
+  }
+}
+export const logOut = () => async (dispatch) => {
+  const responseData = await authAPI.logout();
+
+  if(responseData.resultCode === 0) {
+    dispatch(setAuthsUserData(null, null, null));
+    localStorage.removeItem('auth')
+  }
 }
 
 

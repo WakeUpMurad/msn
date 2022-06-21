@@ -6,10 +6,10 @@ import {Navigate} from "react-router-dom";
 import {AuthContext} from "../../../context";
 
 
-const Login = (props) => {
+const Login = ({logIn}) => {
     const {isAuth, setIsAuth} = useContext(AuthContext);
     const onSubmit = (formData) => {
-        props.logIn(formData.email, formData.password, formData.rememberMe);
+        logIn(formData.email, formData.password, formData.rememberMe);
         if (localStorage.getItem('auth')) {
             setIsAuth(true)
             return <Navigate to="/profile" replace />
