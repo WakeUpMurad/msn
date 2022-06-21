@@ -1,8 +1,12 @@
 {
   "name": "social_net",
   "packageManager": "yarn@3.2.1",
+  "homepage": "https://github.com/WakeUpMurad/msn_smart_net",
   "dependencies": {
     "axios": "^0.27.2",
+    "gh-pages": "^4.0.0",
+    "github": "^14.0.0",
+    "page": "^1.11.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
@@ -19,7 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm rum build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
